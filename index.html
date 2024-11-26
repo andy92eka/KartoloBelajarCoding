@@ -1,1 +1,184 @@
-<h1> KARTOLO CODING</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale
+      =1.0, user-scalable=no"> 
+        <title>HYONGSSAEM REMI 30an</title>
+        <style>
+          body {
+            width: device-width;
+          }
+        </style>
+      </head>
+<body>
+<script>
+function hapusElemen(selector) {
+const elemen = document.querySelectorAll(selector);
+elemen.forEach(el => el.remove());}
+
+function buatNama(){
+judul.textContent="ISI NAMA PEMAIN";
+hapusElemen("input");
+hapusElemen("button");
+hapusElemen("br");
+for (let i = 0; i<jumlahPemain; i++){
+const inputanDalam = document.createElement("input");
+inputanDalam.style.display = "block";
+inputanDalam.style.marginLeft = "auto";
+inputanDalam.style.marginRight = "auto";
+inputanDalam.placeholder = "Masukkan Nama Player "+(i+1);
+inputanDalam.addEventListener("input",()=>{
+arrayNama[i]=inputanDalam.value;});//ISI NAMA
+document.body.appendChild(inputanDalam);
+//document.body.appendChild(document.createElement("br"));
+     };
+if(arrayNama.length != jumlahPemain){
+for (let i = 0; i<jumlahPemain; i++){
+arrayNama[i]="Player "+(i+1);    };   };//tutup IF
+document.body.appendChild(tombolNamaPemain);
+}
+
+function buatHukuman(){
+judul.textContent="ISI JUMLAH HUKUMAN";
+hapusElemen("input");
+hapusElemen("button");
+hapusElemen("br");
+for (let i = 0; i<jumlahPemain; i++){
+const inputanDalam = document.createElement("input");
+inputanDalam.type = "number";
+inputanDalam.style.display = "block";
+inputanDalam.style.marginLeft = "auto";
+inputanDalam.style.marginRight = "auto";
+inputanDalam.placeholder = "Hukuman "+arrayNama[i];
+inputanDalam.addEventListener("input",()=>{
+arrayHukuman[i]=inputanDalam.value;});//ISI HUKUMAN
+document.body.appendChild(inputanDalam);
+//document.body.appendChild(document.createElement("br"));
+if(arrayHukuman != jumlahPemain){
+for (let i = 0; i<jumlahPemain; i++)
+{arrayHukuman[i] = 0;  };
+};    };
+document.body.appendChild(tombolHukuman);
+}
+
+function buatBermain(){
+judul.textContent="CARI HINGGA MERAH";
+hapusElemen("input");
+hapusElemen("button");
+hapusElemen("br");
+
+for (let i = 0; i<jumlahPemain; i++){
+const tombolLayar=document.createElement("button");
+tombolLayar.style.fontSize = "40px";
+tombolLayar.style.padding = "10px";
+tombolLayar.style.borderRadius = "10px";
+tombolLayar.style.borderWidth = "1px";
+tombolLayar.style.width = "47vw";
+tombolLayar.innerHTML=`${arrayNama[i]}<br>${arrayHukuman[i]}`;
+document.body.appendChild(tombolLayar);
+
+tombolLayar.addEventListener("click",()=>{
+arrayHukuman[i] = arrayHukuman[i]-1;
+if(arrayHukuman[i]<1){tombolLayar.style.backgroundColor="red";}
+tombolLayar.innerHTML=`${arrayNama[i]}<br>${arrayHukuman[i]}`;     });//ael tombolLayar
+};//for
+document.body.appendChild(document.createElement("br"));
+tombolResetHukuman.addEventListener("click",()=>{resetHukuman();})
+document.body.appendChild(tombolResetHukuman);
+tombolResetPemain.addEventListener("click",()=>{resetPemain();})
+document.body.appendChild(tombolResetPemain);
+}
+
+
+function resetHukuman(){
+arrayHukuman = [];
+buatHukuman();
+}
+
+function resetPemain(){
+hapusElemen("button");
+hapusElemen("br");
+judul.textContent="MASUKKAN JUMLAH PEMAIN";
+document.body.appendChild(inputan);
+document.body.appendChild(tombolJmlPemain);
+arrayNama = [];
+arrayHukuman = [];
+}
+
+
+let jumlahPemain = 0;
+let arrayNama = [];
+let arrayHukuman = [];
+const judul = document.createElement("h2");
+judul.textContent="Masukkan Jumlah Pemain";
+judul.style.textAlign = "center";
+const inputan = document.createElement("input");
+inputan.type = "number";
+inputan.style.textAlign = "center";
+inputan.style.fontSize = "50px";
+inputan.style.height = "120px";
+inputan.style.width = "240px";
+inputan.style.marginLeft = "auto";
+inputan.style.marginRight = "auto";
+inputan.style.display = "block";
+inputan.addEventListener("input",()=>{jumlahPemain = inputan.value;});
+
+const tombolJmlPemain = document.createElement("button");
+tombolJmlPemain.style.height = "100px";
+tombolJmlPemain.style.marginLeft = "auto";
+tombolJmlPemain.style.marginRight = "auto";
+tombolJmlPemain.style.display = "block";
+tombolJmlPemain.textContent = "BUAT PEMAIN";
+const tombolNamaPemain = document.createElement("button");
+tombolNamaPemain.textContent = "MASUKKAN NAMA";
+tombolNamaPemain.style.display = "block";
+tombolNamaPemain.style.marginLeft = "auto";
+tombolNamaPemain.style.marginRight = "auto";
+const tombolHukuman = document.createElement("button");
+tombolHukuman.textContent = "MASUKKAN HUKUMAN";
+tombolHukuman.style.display = "block";
+tombolHukuman.style.marginLeft = "auto";
+tombolHukuman.style.marginRight = "auto";
+const tombolResetHukuman = document.createElement("button");
+tombolResetHukuman.style.fontSize = "20px";
+tombolResetHukuman.style.padding = "10px";
+tombolResetHukuman.style.borderRadius = "10px";
+tombolResetHukuman.style.borderWidth = "1px";
+tombolResetHukuman.style.width = "47vw";
+tombolResetHukuman.textContent = "RESET HUKUMAN";
+const tombolResetPemain = document.createElement("button");
+tombolResetPemain.style.fontSize = "20px";
+tombolResetPemain.style.padding = "10px";
+tombolResetPemain.style.borderRadius = "10px";
+tombolResetPemain.style.borderWidth = "1px";
+tombolResetPemain.style.width = "47vw";
+tombolResetPemain.textContent = "RESET PEMAIN";
+
+//MULAI SINI
+document.body.appendChild(judul);
+document.body.appendChild(inputan);
+
+tombolJmlPemain.addEventListener("click", ()=>{
+if (inputan.value>0){
+
+buatNama();
+tombolNamaPemain.addEventListener("click", ()=>{
+
+buatHukuman();
+tombolHukuman.addEventListener("click", ()=>{
+
+buatBermain();
+});
+});
+
+} else {alert("jumlah pemain salah");}
+});//tombolJmlPemainAEL
+
+document.body.appendChild(tombolJmlPemain);
+
+
+
+</script>
+</body>
+</html>
